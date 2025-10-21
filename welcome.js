@@ -116,5 +116,4 @@ skipBtn.addEventListener("click", () => {
   console.log("Skip button clicked");
 });
 
-// Inicializa
 updateSlide();
