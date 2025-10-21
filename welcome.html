@@ -27,5 +27,11 @@
 
   <script src="welcome.js"></script>
 </body>
+<script>
+  localStorage.setItem('lastVisit', new Date().getTime());
+  setTimeout(() => {
+    window.location.href = '/index.html';
+  }, 3000);
+</script>
 </html>
 

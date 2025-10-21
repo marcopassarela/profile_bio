@@ -38,4 +38,16 @@
 
   <script src="script.js"></script>
 </body>
+<script>
+  const lastVisit = localStorage.getItem('lastVisit');
+  const now = new Date().getTime();
+  const ONE_DAY = 24 * 60 * 60 * 1000;
+
+  // Se nunca visitou o welcome ou já passou mais de 24h
+  if (!lastVisit || now - lastVisit > ONE_DAY) {
+    // Redireciona imediatamente para welcome.html
+    window.location.href = '/welcome.html';
+  }
+</script>
+
 </html>
