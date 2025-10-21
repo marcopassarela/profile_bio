@@ -120,14 +120,24 @@ body {
 
 
 @media screen and (max-width: 430px) {
-  body {
-    align-items: stretch;
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  #display { 
-    width: 100%; 
-    height: 100vh; 
-    border-radius: 0; 
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* permite que o display ocupe toda altura */
+  }
+
+  #display {
+    width: 100%;
+    height: 100dvh; /* 100% da viewport dinâmica, funciona melhor no iOS */
+    border-radius: 0;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   #social_midia { 
