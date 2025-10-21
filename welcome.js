@@ -3,6 +3,11 @@ const carousel = document.getElementById("carousel");
 const dots = document.querySelectorAll(".dot");
 const skipBtn = document.getElementById("skipBtn");
 
+// Verifica se os elementos existem
+if (!carousel || !dots.length || !skipBtn) {
+  console.error("Erro: Elementos do DOM não encontrados. Verifique os IDs e classes.");
+}
+
 // Variáveis de controle
 let currentSlide = 0;
 let startX = 0;
@@ -16,6 +21,7 @@ if (lastView && Date.now() - parseInt(lastView) < 24 * 60 * 60 * 1000) {
 
 // Atualiza o slide e os indicadores
 function updateSlide() {
+  if (!carousel) return;
   carousel.style.transition = "transform 0.3s ease";
   carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
   dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
@@ -40,6 +46,7 @@ function handleSwipeEnd(diff) {
 
 // Eventos de touch
 function touchStartHandler(e) {
+  if (!carousel) return;
   e.preventDefault();
   startX = e.touches[0].pageX;
   isSwiping = true;
@@ -48,7 +55,7 @@ function touchStartHandler(e) {
 }
 
 function touchMoveHandler(e) {
-  if (!isSwiping) return;
+  if (!isSwiping || !carousel) return;
   e.preventDefault();
   const currentX = e.touches[0].pageX;
   const diff = startX - currentX;
@@ -58,7 +65,7 @@ function touchMoveHandler(e) {
 }
 
 function touchEndHandler(e) {
-  if (!isSwiping) return;
+  if (!isSwiping || !carousel) return;
   e.preventDefault();
   const endX = e.changedTouches[0].pageX;
   const diff = startX - endX;
@@ -66,12 +73,13 @@ function touchEndHandler(e) {
   handleSwipeEnd(diff);
 }
 
-carousel.addEventListener("touchstart", touchStartHandler, { passive: false });
-carousel.addEventListener("touchmove", touchMoveHandler, { passive: false });
-carousel.addEventListener("touchend", touchEndHandler, { passive: false });
+carousel?.addEventListener("touchstart", touchStartHandler, { passive: false });
+carousel?.addEventListener("touchmove", touchMoveHandler, { passive: false });
+carousel?.addEventListener("touchend", touchEndHandler, { passive: false });
 
 // Eventos de mouse
 function mouseDownHandler(e) {
+  if (!carousel) return;
   e.preventDefault();
   startX = e.pageX;
   isSwiping = true;
@@ -80,7 +88,7 @@ function mouseDownHandler(e) {
 }
 
 function mouseMoveHandler(e) {
-  if (!isSwiping) return;
+  if (!isSwiping || !carousel) return;
   e.preventDefault();
   const currentX = e.pageX;
   const diff = startX - currentX;
@@ -90,7 +98,7 @@ function mouseMoveHandler(e) {
 }
 
 function mouseUpHandler(e) {
-  if (!isSwiping) return;
+  if (!isSwiping || !carousel) return;
   e.preventDefault();
   const endX = e.pageX;
   const diff = startX - endX;
@@ -98,12 +106,12 @@ function mouseUpHandler(e) {
   handleSwipeEnd(diff);
 }
 
-carousel.addEventListener("mousedown", mouseDownHandler);
-carousel.addEventListener("mousemove", mouseMoveHandler);
-carousel.addEventListener("mouseup", mouseUpHandler);
+carousel?.addEventListener("mousedown", mouseDownHandler);
+carousel?.addEventListener("mousemove", mouseMoveHandler);
+carousel?.addEventListener("mouseup", mouseUpHandler);
 
-carousel.addEventListener("mouseleave", () => {
-  if (isSwiping) {
+carousel?.addEventListener("mouseleave", () => {
+  if (isSwiping && carousel) {
     updateSlide();
     isSwiping = false;
     console.log("Mouseleave: Slide atual =", currentSlide);
@@ -123,7 +131,7 @@ dots.forEach((dot, index) => {
 });
 
 // Botão Pular
-skipBtn.addEventListener("click", () => {
+skipBtn?.addEventListener("click", () => {
   localStorage.setItem("tutorialView", Date.now());
   window.location.href = "index.html";
   console.log("Skip button clicked");

@@ -1,86 +1,57 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000;
-  font-family: Arial, sans-serif;
-  touch-action: none; /* Impede rolagem padrão da página */
-}
-
-#tutorial {
-  width: 430px;
-  height: 932px;
-  background-color: #fff;
-  border-radius: 50px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.carousel {
-  display: flex;
-  width: 100%; /* largura do container */
-  height: 100%;
-  transition: transform 0.3s ease; /* Transição suave */
-  user-select: none; /* Impede seleção de texto */
-  -webkit-user-select: none; /* Suporte para navegadores WebKit */
-  -ms-user-select: none; /* Suporte para Microsoft */
-  touch-action: pan-y pinch-zoom; /* Permite zoom, mas bloqueia rolagem horizontal */
-}
-
-.slide {
-  min-width: 100%; /* cada slide ocupa 100% do container */
-  height: 100%;
-  flex-shrink: 0; /* Evita encolhimento dos slides */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  user-select: none; /* Impede seleção de texto nos slides */
-}
-
-/* Dots indicadores */
-.indicators {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-  gap: 10px;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ccc;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #000;
-}
-
-/* Botão Pular */
-.buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-#skipBtn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    #carousel {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      touch-action: none; /* Impede scroll padrão no toque */
+    }
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+    }
+    .slide:nth-child(1) { background-color: #3498db; }
+    .slide:nth-child(2) { background-color: #e74c3c; }
+    .slide:nth-child(3) { background-color: #2ecc71; }
+    .dots {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .dot.active {
+      background-color: #333;
+    }
+    #skipBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+      font-size: 1rem;
+    }
