@@ -118,8 +118,13 @@ body {
   height: 40px;
 }
 
-/* Mobile adjustments */
+
 @media screen and (max-width: 430px) {
-  #display { width: 100%; height: 100%; border-radius: 0; }
-  #social_midia { bottom: 20px; }
+  #display { width: 100%; 
+    height: 100vh; 
+    border-radius: 0; 
+  }
+  #social_midia { 
+    bottom: 20px; 
+  }
 }
