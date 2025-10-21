@@ -9,6 +9,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative; /* necessário para overlay e menu */
+  overflow-x: hidden;
 }
 
 /* Moldura do celular */
@@ -64,7 +66,7 @@ body {
 
 /* Menu lateral */
 .menu {
-  position: absolute;
+  position: fixed; /* ajustado de absolute para fixed */
   top: 0;
   left: 0;
   width: 300px;
@@ -88,7 +90,7 @@ body {
 
 /* Overlay */
 #overlay {
-  position: absolute;
+  position: fixed; /* ajustado de absolute para fixed */
   top: 0;
   left: 0;
   width: 100%;
@@ -99,7 +101,10 @@ body {
   transition: opacity 0.3s ease;
   z-index: 998;
 }
-#overlay.active { opacity: 0.5; pointer-events: auto; }
+#overlay.active {
+  opacity: 0.5;
+  pointer-events: auto;
+}
 
 /* Social media */
 #social_midia {
@@ -116,7 +121,7 @@ body {
   height: 40px;
 }
 
-
+/* Media Query para celular */
 @media screen and (max-width: 430px) {
   body {
     align-items: stretch; /* deixa ocupar toda altura */
